@@ -1,1 +1,0 @@
-# id-submit-bot
