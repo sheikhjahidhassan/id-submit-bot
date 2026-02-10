@@ -1,3 +1,20 @@
+import os
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+@app.route('/')
+def home():
+    return "Unknown World is Online!"
+
+def run():
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+keep_alive() # এটি সবার আগে কল করুন
 import telebot
 from telebot import types
 
@@ -54,5 +71,6 @@ def admin_reply(message):
             bot.send_message(ADMIN_ID, "📩 রিপ্লাই পাঠানো হয়েছে।")
     except:
         bot.send_message(ADMIN_ID, "❌ সরাসরি রিপ্লাই দেওয়া যাচ্ছে না।")
+
 
 bot.polling(none_stop=True)
